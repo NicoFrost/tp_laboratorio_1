@@ -9,10 +9,10 @@
 #define CALCULOS_H_
 
 void MostrarResultados(char nombre[30],float precio,float prcTD,float prcTC,float prcBTC,float prcUnit);
-float PrcTD(int precio);
-float PrcTC(int precio);
-float PrcBTC(int precio);
-float PrcUnit(int km,int precio);
-float DifPrc(int precioA,int precioB);
+float PrcTD(float precio);
+float PrcTC(float precio);
+float PrcBTC(float precio);
+float PrcUnit(int km,float precio);
+float DifPrc(float precioA,float precioB);
 
 #endif /* CALCULOS_H_ */

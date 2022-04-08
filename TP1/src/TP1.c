@@ -18,7 +18,7 @@
 int main(void) {
 	setbuf(stdout,NULL);
 
-	char menu;
+	char menu,menu2;
 	int x = 0;
 	int flag1 = 0;
 	int flag2 = 0;
@@ -41,16 +41,32 @@ int main(void) {
 		case 1:
 			setbuf(stdin,NULL);
 			x = IngresarEntero("Ingrese Km totales del viaje:",1);
+			//evito dividir por 0
 			if(!(x == 0)){
 				flag1 = 1;
 			}
 			break;
 		case 2:
-			y = IngresarFlotante("Ingrese Precio Vuelo por Aerolineas Argentinas: ",1);
-			z = IngresarFlotante("Ingrese Precio Vuelo por LATAM: ",1);
-			if(!(y == 0 || z == 0 )){
-				flag2 = 1;
-			}
+			do{
+				printf("Y. Precio Vuelo por Aerolineas Argentinas\n");
+				printf("Z. Precio Vuelo por LATAM\n");
+				printf("o ingresa 0 para regresar\n");
+				setbuf(stdin,NULL);
+				scanf("%c",&menu2);
+				switch (menu2){
+				case 'y':
+					y = IngresarFlotante("Ingrese Precio:",1);
+					break;
+				case 'z':
+					z = IngresarFlotante("Ingrese Precio:",1);
+					break;
+				default:
+					printf("ERROR: numero fuera del rango de menu ingrese uno dentro de los mostrados\n");
+				}
+				if(!(y == 0 || z == 0 )){
+					flag2 = 1;
+				}
+			}while(menu2 != '0');
 
 			break;
 		case 3:
@@ -120,6 +136,9 @@ int main(void) {
 
 			MostrarResultados("Aerolineas", y, prcAerolineasTD, prcAerolineasTC, prcAerolineasBTC, prcAerolineasUnit);
 			MostrarResultados("LATAM", z, prcLatamTD, prcLatamTC, prcLatamBTC, prcLatamUnit);
+			x = 0;
+			y = 0;
+			z = 0;
 
 			printf("\nLa diferencia de precio es: $ %.2f", difPrc);
 

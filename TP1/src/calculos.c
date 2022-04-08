@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "Calculos.h"
 
+float BTC = 4606954.55;
+
 void MostrarResultados(char nombre[30],float precio,float prcTD,float prcTC,float prcBTC,float prcUnit){
 
 	printf("Precio %s: %.2f\n",nombre,precio);
@@ -13,27 +15,23 @@ void MostrarResultados(char nombre[30],float precio,float prcTD,float prcTC,floa
 
 }
 
-float PrcTD(int precio){
+float PrcTD(float precio){
 	return precio - (precio * .10);
 }
 
-float PrcTC(int precio){
+float PrcTC(float precio){
 	return precio + (precio * .25);
 }
 
-float PrcBTC(int precio){
-
-	float BTC = 4606954.55;
-
+float PrcBTC(float precio){
 	return precio / BTC;
 }
 
-float PrcUnit(int km,int precio){
+float PrcUnit(int km,float precio){
 	return precio / km;
 }
 
-float DifPrc(int precioA,int precioB){
-
+float DifPrc(float precioA,float precioB){
 	int retorno;
 	if(precioA > precioB){
 		retorno = precioA - precioB;

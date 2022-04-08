@@ -18,4 +18,6 @@ void OrdenamientoBurbujaAscendente(int numero[],int cant,int *puntero);
 
 void OrdenamientoBurbujaDescendente(int numero[],int cant,int *puntero);
 
+int validarIntervalo(int numero, int min, int max,int flag);
+
 #endif

@@ -118,8 +118,37 @@ void setFlycode(char flycode[51]){
 	} while(!(flyCodeVerif(flycode)));
 }
 
-int setPaxData(char* nombre,char* apellido,float* price,int* typePassanger,char* flycode){
+void setMPaxData(Passenger* pasajero,Passenger* list){
+	int option;
+	*pasajero = list[0];
+	do{
+		option = MenuGeneral(1, "1.Nombre y Apellido\n", "2.Precio\n", "3.Tipo de pasaje\n" , "4.Codigo de Vuelo\n", "5.Terminado\n" , "");
+		switch(option){
+		case 1:
+			setNameLastname(pasajero->name, pasajero->lastname);
+			break;
+		case 2:
+			pasajero->price = setPrice();
+			break;
+		case 3:
+			pasajero->typePassenger = setTypePassanger();
+			break;
+		case 4:
+			setFlycode(pasajero->flycode);
+			break;
+		case 5:
+			printf("%s",pasajero->name);
+			printf("%s",pasajero->lastname);
+			printf("%f",pasajero->price);
+			printf("%s",pasajero->flycode);
+			printf("%d",pasajero->typePassenger);
+			break;
+		}
+	} while(option != 0);
 
+}
+
+int setPaxData(Passenger* pasajero){
 	int option;
 	char confirm;
 	int n = 0,p = 0,t = 0,c = 0;
@@ -128,19 +157,19 @@ int setPaxData(char* nombre,char* apellido,float* price,int* typePassanger,char*
 		option = MenuGeneral(1, "1.Nombre y Apellido\n", "2.Precio\n", "3.Tipo de pasaje\n" , "4.Codigo de Vuelo\n", "5.Confirmar\n" , "");
 		switch(option){
 		case 1:
-			setNameLastname(nombre,apellido);
+			setNameLastname(pasajero->name, pasajero->lastname);
 			n = 1;
 			break;
 		case 2:
-			*price = setPrice();
+			pasajero->price = setPrice();
 			p = 1;
 			break;
 		case 3:
-			*typePassanger = setTypePassanger();
+			pasajero->typePassenger = setTypePassanger();
 			t = 1;
 			break;
 		case 4:
-			setFlycode(flycode);
+			setFlycode(pasajero->flycode);
 			c = 1;
 			break;
 		case 5:
@@ -175,12 +204,28 @@ int setPaxData(char* nombre,char* apellido,float* price,int* typePassanger,char*
  *  \param largo de la lista de pasajeros
  *  \return retorna -1 por Error, 0 si esta todo bien
  *
+ *
  */
-int modPaxData(int id,Passenger* list, int len){
+//int modPaxData(int id,Passenger pasajero,Passenger* list, int len){
+int modPaxData(int id,Passenger pasajero,Passenger* list, int len){
 	int r = -1;
-	int option;
+//	int option;
 	int sid = findPassengerById(list, len, id);
-	do{
+	if(sid != -1){
+		strcpy(list[sid].name,pasajero.name);
+		strcpy(list[sid].lastname,pasajero.lastname);
+		list[sid].price = pasajero.price;
+		list[sid].typePassenger = pasajero.typePassenger;
+		strcpy(list[sid].flycode,pasajero.flycode);
+		r = 1;
+	}
+
+	return r;
+}
+
+
+/*
+ 	do{
 		option = MenuGeneral(1, "1.Nombre y Apellido\n", "2.Precio\n", "3.Tipo de pasaje\n" , "4.Codigo de Vuelo\n", "" , "");
 		switch(option){
 		case 1:
@@ -201,7 +246,15 @@ int modPaxData(int id,Passenger* list, int len){
 			break;
 		}
 	}while(option != 0);
-	return r;
-}
+*/
+void MostrarUnPasajero(Passenger* list,int i){
 
+
+	if(list[i].isEmpty == 0){
+		printf("| %d\t| %s\t| %s \t| $%.2f\t| %d\t| %s\t|\n",list[i].id,list[i].name,list[i].lastname,list[i].price,list[i].typePassenger,list[i].flycode);
+	}
+
+
+
+}
 

@@ -15,9 +15,11 @@ int setNameLastname();
 float setPrice();
 int setTypePassanger();
 void setFlycode(char flycode[51]);
-int setPaxData(char* nombre,char* apellido,float* price,char* typePassanger,char* flycode);
+//int setPaxData(char* nombre,char* apellido,float* price,char* typePassanger,char* flycode);
+int setMPaxData(Passenger* pasajero,Passenger* list);
+int setPaxData(Passenger* pasajero);
 
 int flyCodeVerif(char* codigo);
-int modPaxData(int id,Passenger* list, int len);
-
+int modPaxData(int id,Passenger pasajero,Passenger* list,int len);
+void MostrarUnPasajero(Passenger* list,int i);
 #endif /* FUNCIONES_H_ */

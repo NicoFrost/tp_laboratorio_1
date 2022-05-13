@@ -92,10 +92,19 @@ find a passenger] - (0) if Ok
 int removePassenger(Passenger* list, int len, int id){
 
 	int i = findPassengerById(list, len, id);
+	char respuesta;
 
 	if(i != -1){
-		list[i].isEmpty = 1;
-		i = 0;
+		MostrarUnPasajero(list,i);
+		do{
+			printf("\nEsta seguro que quiere eliminar este pasajero? (Y/N)");
+			setbuf(stdin,NULL);
+			scanf("%c",&respuesta);
+		}while(!(respuesta == 'y' || respuesta == 'n'));
+		if(respuesta == 'y'){
+			 list[i].isEmpty = 1;
+			i = 0;
+		}
 	}
 
 	return i;

@@ -48,7 +48,6 @@ Passenger* Passenger_new(){
  * @param estadoVueloStr estado de vuelo pasado como string (convertido a texto)
  * @return pasajero lleno con datos aportados por parametros
  */
-
 Passenger* Passenger_newParametros(char* idStr,char* nombreStr,char* apellidoStr,char* precioStr,char* codigoStr,char* tipoPasajeroStr,char* estadoVueloStr){
 
 	Passenger* nuevoPasajero = Passenger_new();
@@ -454,10 +453,10 @@ int Passenger_setEstadoVuelo(Passenger* this,int estadoVuelo){
 //GETERS
 
 /**
- * @brief
+ * @brief obtiene el id y lo pasa por parametro
  * @param this
  * @param id
- * @return
+ * @return retorna 1 si devuelve bien y 0 si hay un error
  */
 int Passenger_getId(Passenger* this,int* id){
 	int retorno = 0;
@@ -467,6 +466,12 @@ int Passenger_getId(Passenger* this,int* id){
 	}
 		return retorno;
 }
+/**
+ * @brief obtiene el nombre y lo pasa por parametro
+ * @param this
+ * @param nombre
+ * @return retorna 1 si devuelve bien y 0 si hay un error
+ */
 
 int Passenger_getNombre(Passenger* this,char* nombre){
 	int retorno = 0;
@@ -478,7 +483,12 @@ int Passenger_getNombre(Passenger* this,char* nombre){
 
 	return retorno;
 }
-
+/**
+ * @brief obtiene el apellido y lo pasa por parametro
+ * @param this
+ * @param apellido
+ * @return retorna 1 si devuelve bien y 0 si hay un error
+ */
 int Passenger_getApellido(Passenger* this,char* apellido){
 
 	int retorno = 0;
@@ -490,7 +500,12 @@ int Passenger_getApellido(Passenger* this,char* apellido){
 
 	return retorno;
 }
-
+/**
+ * @brief obtiene el precio y lo pasa por parametro
+ * @param this
+ * @param precio en flotante
+ * @return retorna 1 si devuelve bien y 0 si hay un error
+ */
 int Passenger_getPrecio(Passenger* this,float* precio){
 	int retorno = 0;
 	if(this != NULL && precio != NULL){
@@ -500,7 +515,12 @@ int Passenger_getPrecio(Passenger* this,float* precio){
 
 	return retorno;
 }
-
+/**
+ * @brief obtiene el codigo de vuelo y lo pasa por parametro
+ * @param this
+ * @param codigo de vuelo
+ * @return retorna 1 si devuelve bien y 0 si hay un error
+ */
 int Passenger_getCodigoVuelo(Passenger* this,char* codigoVuelo){
 	int retorno = 0;
 	if(this != NULL && codigoVuelo != NULL){
@@ -510,7 +530,12 @@ int Passenger_getCodigoVuelo(Passenger* this,char* codigoVuelo){
 
 	return retorno;
 }
-
+/**
+ * @brief obtiene el tipo de pasajero (en numero) y lo pasa por parametro
+ * @param this
+ * @param tipo de pasajero (en numero)
+ * @return retorna 1 si devuelve bien y 0 si hay un error
+ */
 int Passenger_getTipoPasajero(Passenger* this,int* tipoPasajero){
 	int retorno = 0;
 	if(this != NULL && tipoPasajero != NULL){
@@ -520,7 +545,12 @@ int Passenger_getTipoPasajero(Passenger* this,int* tipoPasajero){
 		return retorno;
 }
 
-
+/**
+ * @brief obtiene el estado de vuelo (en numero) y lo pasa por parametro
+ * @param this
+ * @param estado de vuelo (en numero)
+ * @return retorna 1 si devuelve bien y 0 si hay un error
+ */
 int Passenger_getEstadoVuelo(Passenger* this,int* estadoVuelo){
 	int retorno = 0;
 	if(this != NULL && estadoVuelo != NULL){
@@ -529,9 +559,15 @@ int Passenger_getEstadoVuelo(Passenger* this,int* estadoVuelo){
 	}
 		return retorno;
 }
-
+/**
+ * @brief obtiene el obtiene ultimo ID registrado
+ * @param this
+ * @param id id buscado
+ * @return retorna 1 si devuelve bien y 0 si hay un error
+ */
 int Passenger_getLastId(LinkedList* lList,int* sid){
 
+	int retorno = 0;
 	if(lList != NULL && sid != NULL){
 		int len = ll_len(lList);
 		int idMax = 0;
@@ -546,6 +582,7 @@ int Passenger_getLastId(LinkedList* lList,int* sid){
 			}
 		}
 		*sid = idMax + 1;
+		retorno = 1;
 	}
-	return 1;
+	return retorno;
 }

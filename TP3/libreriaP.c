@@ -11,6 +11,20 @@
 #include <ctype.h>
 #include "libreriaP.h"
 
+/**
+ * @brief muestra un menu con los mensajes pasados por parametro
+ * @param submenu define mesaje final para pasar si quiere que diga salir, regresar o cancelar
+ * @param mensaje1
+ * @param mensaje2
+ * @param mensaje3
+ * @param mensaje4
+ * @param mensaje5
+ * @param mensaje6
+ * @param mensaje7
+ * @param mensaje8
+ * @param salida define numero para salir del donde estes
+ * @return retorna la opcion elegida
+ */
 int MenuGeneral(int submenu,char mensaje1[], char mensaje2[], char mensaje3[], char mensaje4[], char mensaje5[], char mensaje6[],char mensaje7[],char mensaje8[],char salida){
 
 	char respuesta;
@@ -48,7 +62,7 @@ int MenuGeneral(int submenu,char mensaje1[], char mensaje2[], char mensaje3[], c
 	return retorno;
 }
 
-
+//NO SE USO
 int IngresarEntero(char mensaje[],int verif)
 {
     int numero;
@@ -73,7 +87,7 @@ int IngresarEntero(char mensaje[],int verif)
 	return numero;
 }
 
-
+//NO SE USO
 float IngresarFlotante(char mensaje[],int verif)
 {
     float numero;
@@ -97,7 +111,7 @@ float IngresarFlotante(char mensaje[],int verif)
 	return numero;
 }
 
-
+//NO SE USO
 void setString(char cadena[],char mensaje[],int tam)
 {
     char auxiliar[tam];
@@ -107,7 +121,7 @@ void setString(char cadena[],char mensaje[],int tam)
     strcpy(cadena, auxiliar);
 }
 
-
+//NO SE USO
 void OrdenamientoBurbujaAscendente(int numero[],int cant,int *puntero){
 
 	int aux,i,j;
@@ -124,7 +138,7 @@ void OrdenamientoBurbujaAscendente(int numero[],int cant,int *puntero){
 	puntero = numero;
 }
 
-
+//NO SE USO
 void OrdenamientoBurbujaDscendente(int numero[],int cant,int *puntero){
 
 	int aux,i,j;
@@ -141,6 +155,7 @@ void OrdenamientoBurbujaDscendente(int numero[],int cant,int *puntero){
 	puntero = numero;
 }
 
+//NO SE USO
 void InicializarArray(int array[],int cantidad){
 
 	for(int i = 0;i<cantidad;i++){
@@ -149,6 +164,7 @@ void InicializarArray(int array[],int cantidad){
 
 }
 
+//NO SE USO
 int BuscarEspacio(int array[],int cantidad){
 
 	int i;
@@ -160,6 +176,11 @@ int BuscarEspacio(int array[],int cantidad){
 	return i;
 }
 
+/**
+ * @brief revisa si la cadena es completamente letras
+ * @param string cadena de texto
+ * @return retorna 1 si no hay numeros en la cadena o 0 si hay alguno
+ */
 int isStrAlpha(char string[]){
 
 	int r = 0;
@@ -177,10 +198,9 @@ int isStrAlpha(char string[]){
 }
 
 /**
- * @brief
- *
- * @param codigo
- * @return
+ * @brief verifica el codigo de vuelo para que no se ingrese de mal manera
+ * @param codigo a verificar
+ * @return retorna 1 si esta todo bien sino 0 por error
  */
 int flyCodeVerif(char* codigo){
 

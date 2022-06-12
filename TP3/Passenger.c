@@ -13,6 +13,10 @@
 #include "libreriaP.h"
 #define TAM 50
 
+/**
+ * @brief crea en memoria dinamica un pasajero y lo setea vacio para luego ser llenado por otra funcion
+ * @return pasajero vacio
+ */
 Passenger* Passenger_new(){
 
     Passenger* nuevoPasajero = NULL;
@@ -32,7 +36,19 @@ Passenger* Passenger_new(){
     return nuevoPasajero;
 }
 
-//no modificable
+
+/**
+ * @brief usa funcion passenger_new() para crear un pasajero y luego lo rellena con datos pasados por parametros
+ * @param idStr id como string
+ * @param nombreStr nombre
+ * @param apellidoStr apellido
+ * @param precioStr precio pasado como string
+ * @param codigoStr codigo de vuelo
+ * @param tipoPasajeroStr tipo de pasajero pasado como string (contertidos a texto)
+ * @param estadoVueloStr estado de vuelo pasado como string (convertido a texto)
+ * @return pasajero lleno con datos aportados por parametros
+ */
+
 Passenger* Passenger_newParametros(char* idStr,char* nombreStr,char* apellidoStr,char* precioStr,char* codigoStr,char* tipoPasajeroStr,char* estadoVueloStr){
 
 	Passenger* nuevoPasajero = Passenger_new();
@@ -90,7 +106,11 @@ Passenger* Passenger_newParametros(char* idStr,char* nombreStr,char* apellidoStr
 
 
 //FUNCIONES AGREGADAS
-
+/**
+ * @brief borrar pasajeros en el LinkedList
+ * @param lList LinkedList
+ * @param delId id elegido para eliminar
+ */
 void Passenger_delete(LinkedList* lList,int delId){
 	if(lList != NULL && delId > 0){
 		Passenger* pax;
@@ -112,6 +132,13 @@ void Passenger_delete(LinkedList* lList,int delId){
 	}
 }
 
+/**
+ * @attention esta funcion esta hecha para solo funcionar con el ll_sort
+ * @brief funcion criterio que compara codigos de vuelo de los pasajero pasados por parametro, para usar en ll_sort
+ * @param Pasajero1
+ * @param Pasajero2
+ * @return numero de comparacion para ll_sort
+ */
 int Passenger_sortByCode(void* Pasajero1,void* Pasajero2){
 	int retorno;
 
@@ -130,6 +157,13 @@ int Passenger_sortByCode(void* Pasajero1,void* Pasajero2){
 	return retorno;
 }
 
+/**
+ * @attention esta funcion esta hecha para solo funcionar con el ll_sort
+ * @brief funcion criterio que compara apellidos de los pasajero pasados por parametro, para usar en ll_sort
+ * @param Pasajero1
+ * @param Pasajero2
+ * @return numero de comparacion para ll_sort
+ */
 int Passenger_sortByLastname(void* Pasajero1,void* Pasajero2){
 
 	int retorno;
@@ -151,7 +185,11 @@ int Passenger_sortByLastname(void* Pasajero1,void* Pasajero2){
 
 
 
-
+/**
+ * @brief obtiene datos y muestra 1 pasajero por pantalla
+ * @param this pasajero a mostrar
+ * @param pArrayListPassenger LinkedList
+ */
 void Passenger_OnePassenger(Passenger* this,LinkedList* pArrayListPassenger){
 	int id,estadoAux,tipoAux;
 	float precio;
@@ -174,7 +212,10 @@ void Passenger_OnePassenger(Passenger* this,LinkedList* pArrayListPassenger){
 		printf("ERROR, al traer uno o varios datos desdde Linkedlist");
 	}
 }
-
+/**
+ * @brief muestra una lista de todos los pasajeros
+ * @param pArrayListPassenger LinkedList
+ */
 void Passenger_list(LinkedList* pArrayListPassenger){
 	char res;
 	int corte = 250;
@@ -195,24 +236,12 @@ void Passenger_list(LinkedList* pArrayListPassenger){
 	printf("===========================================================================================================================================\n");
 }
 
-int getLenFile(char* path){
-
-	FILE* pArchivo;
-	int i = 1;
-	char fantasma[100];
-
-	pArchivo = fopen(path,"r");
-		while(!feof(pArchivo)){
-			fscanf(pArchivo,"%[^\n]\n",fantasma);
-			i++;
-		}
-		printf("cantidad %d",i);
-	fclose(pArchivo);
-
-	return 1;
-}
-
-
+/**
+ * @brief funcion para guardar linkedlist en archivo pasado
+ * @param pFile puntero a archivo
+ * @param lList puntero a linkedlist
+ * @return retorna 1 si se guarda bien sino 0 si no se guardaron correctamente
+ */
 int GuardarTxt(FILE* pFile,LinkedList* lList){
 	int retorno = 0;
 	if(pFile != NULL && lList != NULL){
@@ -251,7 +280,6 @@ int GuardarTxt(FILE* pFile,LinkedList* lList){
 						retorno = 1;
 					}
 				}
-				printf("cant: %d\n",cantidadEscrita);
 			}
 		}
 	}
@@ -259,9 +287,12 @@ int GuardarTxt(FILE* pFile,LinkedList* lList){
 	return retorno;
 }
 
-
-//----------
-
+/**
+ * @brief se usa para poder convertir tipo de pasajero en numero a su contraparte en cadena de texto
+ * @param tipoPasajero numero referenciando a uno de sus modos en texto
+ * @param tipoPasajeroC cadena de texto a la que referencia el numero con el que se guarda en la estructura
+ * @return retorna siempre 1
+ */
 int itocTipoPasajero(int tipoPasajero,char* tipoPasajeroC){
 
 	if(tipoPasajero == 1){
@@ -278,6 +309,12 @@ int itocTipoPasajero(int tipoPasajero,char* tipoPasajeroC){
 	return 1;
 }
 
+/**
+ * @brief se usa para poder convertir estados de vuelo en numero a su contraparte en cadena de texto
+ * @param estadoVuelo numero referenciando a uno de sus modos en texto
+ * @param estadoVueloC cadena de texto a la que referencia el numero con el que se guarda en la estructura
+ * @return retorna siempre 1
+ */
 int itocEstadoVuelo(int estadoVuelo,char* estadoVueloC){
 
 	if(estadoVuelo == 1){
@@ -297,8 +334,16 @@ int itocEstadoVuelo(int estadoVuelo,char* estadoVueloC){
 	}
 	return 1;
 }
+
+//----------
 //SETERS
 
+/**
+ * @brief setea un id en el pasajero
+ * @param this pasajero
+ * @param id numero de id
+ * @return devuele 1 si se hizo bien 0 si hubo un error
+ */
 int Passenger_setId(Passenger* this,int id){
 
 	int retorno = 0;
@@ -310,7 +355,12 @@ int Passenger_setId(Passenger* this,int id){
 
 	return retorno;
 }
-
+/**
+ * @brief setea un nombre en el pasajero
+ * @param this pasajero
+ * @param nombre cadena de texto de nombre
+ * @return devuele 1 si se hizo bien 0 si hubo un error
+ */
 int Passenger_setNombre(Passenger* this,char* nombre){
 	int retorno = 0;
 
@@ -321,7 +371,12 @@ int Passenger_setNombre(Passenger* this,char* nombre){
 
 	return retorno;
 }
-
+/**
+ * @brief setea un apellido en el pasajero
+ * @param this pasajero
+ * @param apellido cadena de texto de apellido
+ * @return devuele 1 si se hizo bien 0 si hubo un error
+ */
 int Passenger_setApellido(Passenger* this,char* apellido){
 	int retorno = 0;
 
@@ -332,7 +387,12 @@ int Passenger_setApellido(Passenger* this,char* apellido){
 
 	return retorno;
 }
-
+/**
+ * @brief setea un precio en el pasajero
+ * @param this pasajero
+ * @param precio numero flotante
+ * @return devuele 1 si se hizo bien 0 si hubo un error
+ */
 int Passenger_setPrecio(Passenger* this,float precio){
 	int retorno = 0;
 
@@ -343,7 +403,12 @@ int Passenger_setPrecio(Passenger* this,float precio){
 
 	return retorno;
 }
-
+/**
+ * @brief setea un codigo de vuelo en el pasajero
+ * @param this pasajero
+ * @param codigoVuelo cadena de texto de codigo de vuelo
+ * @return devuele 1 si se hizo bien 0 si hubo un error
+ */
 int Passenger_setCodigoVuelo(Passenger* this,char* codigoVuelo){
 
 	int retorno = 0;
@@ -353,7 +418,12 @@ int Passenger_setCodigoVuelo(Passenger* this,char* codigoVuelo){
 	}
 	return retorno;
 }
-
+/**
+ * @brief setea un tipo de pasajero en el pasajero
+ * @param this pasajero
+ * @param tipoPasajero numero de tipo de pasajero
+ * @return devuele 1 si se hizo bien 0 si hubo un error
+ */
 int Passenger_setTipoPasajero(Passenger* this,int tipoPasajero){
 	int retorno = 0;
 
@@ -364,7 +434,12 @@ int Passenger_setTipoPasajero(Passenger* this,int tipoPasajero){
 
 	return retorno;
 }
-
+/**
+ * @brief setea un estado de vuelo en el pasajero
+ * @param this pasajero
+ * @param estadoVuelo numero de estado vuelo
+ * @return devuele 1 si se hizo bien 0 si hubo un error
+ */
 int Passenger_setEstadoVuelo(Passenger* this,int estadoVuelo){
 	int retorno = 0;
 
@@ -378,7 +453,12 @@ int Passenger_setEstadoVuelo(Passenger* this,int estadoVuelo){
 
 //GETERS
 
-
+/**
+ * @brief
+ * @param this
+ * @param id
+ * @return
+ */
 int Passenger_getId(Passenger* this,int* id){
 	int retorno = 0;
 	if(this != NULL && id > 0){

@@ -136,8 +136,6 @@ int controller_sortPassenger(LinkedList* pArrayListPassenger)
 		}
 	}
 
-		return 1;
-
     return 1;
 }
 

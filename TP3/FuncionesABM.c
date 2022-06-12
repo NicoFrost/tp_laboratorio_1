@@ -14,11 +14,11 @@
 #define TAM 50
 
 /**
- * @brief
- * @param lList
- * @param newPax
- * @param idActual
- * @return
+ * @brief agrega un pasajero pasado por newpax a la linkedlist
+ * @param lList - linkedlist
+ * @param newPax - pasajero nuevo
+ * @param idActual - ultimo ID registrado
+ * @return 1 en cualquier caso
  */
 int Passenger_add(LinkedList* lList,Passenger* newPax,int idActual){
 
@@ -41,6 +41,12 @@ int Passenger_add(LinkedList* lList,Passenger* newPax,int idActual){
 	return 1;
 }
 
+/**
+ * @brief modificador de pasajeros dentro de la linkedList
+ * @param lList LinkedList
+ * @param sId id buscada
+ * @return retorna 1 como siempre
+ */
 int Passenger_mod(LinkedList* lList,int sId){
 
 	int index = Passenger_findId(lList,sId);
@@ -101,6 +107,12 @@ int Passenger_mod(LinkedList* lList,int sId){
 	return 1;
 }
 
+/**
+ * @brief encuentra las ID de los Pasajeros
+ * @param lList
+ * @param id
+ * @return
+ */
 int Passenger_findId(LinkedList* lList,int id){
 
 	Passenger* PasajeroAux;
@@ -117,7 +129,13 @@ int Passenger_findId(LinkedList* lList,int id){
 }
 
 
-//SETERS
+//SETERS PERSONALES
+
+/**
+ * @brief pregunta al usuario nombre y apellido
+ * @param string del nombre
+ * @param string del apellido
+ */
 void setNameLastname(char* nombre,char* apellido){
 	do{
 		printf("nombre y apellido: ");
@@ -132,6 +150,10 @@ void setNameLastname(char* nombre,char* apellido){
 	}while(!(isStrAlpha(nombre) && isStrAlpha(apellido)));
 }
 
+/**
+ *  @brief pregunta al usuario precio
+ * @return el precio en modo flotante
+ */
 float setPrice(){
 	float price;
 	do{
@@ -146,6 +168,11 @@ float setPrice(){
 	return price;
 }
 
+/**
+ * @brief pregunta al usuario el tipo de pasajero
+ * @attention pido los tipos mostrando 3 tipos y luego se debe seleccionar con 3 numeros
+ * @return numero refiriendose al tipo de pasajero
+ */
 int setTypePassanger(){
 	int typePassanger;
 	do{
@@ -165,6 +192,10 @@ int setTypePassanger(){
 	return typePassanger;
 }
 
+/**
+ * @brief pide al usuario el codigo de vuelo
+ * @param string para llenar con el flycode
+ */
 void setFlycode(char flycode[51]){
 	do{
 		printf("Codigo de Vuelo (AAXXXXA): ");
@@ -179,6 +210,11 @@ void setFlycode(char flycode[51]){
 	} while(!(flyCodeVerif(flycode)));
 }
 
+/**
+ * @brief pregunta al usuario el estado de vuelo
+ * @attention pide los estados de vuelo mostrando 4 modos y luego se debe seleccionar con 4 numeros
+ * @return numero refiriendose al estado del vuelo
+ */
 int SetStatusFlight(){
 	int statusFlight;
 	do{
@@ -197,6 +233,11 @@ int SetStatusFlight(){
 	return statusFlight;
 }
 
+/**
+ * @brief setea un pasajero de que se pasa por parametro
+ * @param pasajero que se quiere rellenar con datos
+ * @return devuelve 1 si se creo correctamente y 0 si hubo un error
+ */
 int setPaxData(Passenger* pasajero){
 	int option;
 	char confirm;

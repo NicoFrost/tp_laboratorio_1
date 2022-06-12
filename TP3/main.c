@@ -46,13 +46,13 @@ int main()
 							option2 = MenuGeneral(1, "1.Cargar desde archivo de texto\n", "2.Cargar desde archivo binario\n", "", "", "", "", "", "", '0');
 							switch (option2) {
 								case 1:
-									controller_loadFromText("datatest.csv", listaPasajeros);
+									controller_loadFromText("data.csv", listaPasajeros);
 									flagCarga = 1;
 									flagAlta = 1;
 									break;
 								case 2:
 
-									controller_loadFromBinary("datatestG.bin", listaPasajeros);
+									controller_loadFromBinary("data.bin", listaPasajeros);
 									flagCarga = 1;
 									flagAlta = 1;
 									break;
@@ -101,13 +101,13 @@ int main()
 						switch (option2) {
 							case 1:
 
-								if(controller_saveAsText("datatest.csv",listaPasajeros)){
+								if(controller_saveAsText("data.csv",listaPasajeros)){
 									flagCarga = 0;
 								}
 								break;
 							case 2:
 
-								if(controller_saveAsBinary("datatestG.bin", listaPasajeros)){
+								if(controller_saveAsBinary("data.bin", listaPasajeros)){
 									flagCarga = 0;
 								}
 								break;
@@ -116,6 +116,7 @@ int main()
             	} else {
             		printf("debe cargar primero los Pasajeros antes de poder guardar");
             	}
+            	break;
             case 8:
             	if(flagCarga != 0){
             		option = 10;

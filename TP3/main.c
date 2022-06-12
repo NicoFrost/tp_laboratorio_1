@@ -41,7 +41,7 @@ int main()
     	switch(option)
         {
             case 1:
-            	if(flagCarga == 0){
+            	if(flagCarga == 0 && flagAlta != 1){
 						do{
 							option2 = MenuGeneral(1, "1.Cargar desde archivo de texto\n", "2.Cargar desde archivo binario\n", "", "", "", "", "", "", '0');
 							switch (option2) {
@@ -65,6 +65,7 @@ int main()
             case 2:
             	if(flagCarga == 0 && flagAlta != 1){
             		controller_loadFromText("data.csv", listaPasajeros);
+            		flagCarga = 1;
             	}
             	controller_addPassenger(listaPasajeros);
             	flagAlta = 1;

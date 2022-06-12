@@ -185,7 +185,6 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListPassenger)
 	if (parchivob != NULL && pArrayListPassenger != NULL){
 		for(int i = 0;i < len;i++){
 			pasajeroAux = ll_get(pArrayListPassenger, i);
-			printf("->%s %s\n",pasajeroAux->nombre,pasajeroAux->apellido);
 			cantidadEscritos = fwrite(pasajeroAux,sizeof(Passenger),1,parchivob);
 		}
 		if(cantidadEscritos == len){

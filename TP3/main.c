@@ -63,8 +63,8 @@ int main()
             	}
             	break;
             case 2:
-            	if(flagCarga == 0){
-            		controller_loadFromText("datatest.csv", listaPasajeros);
+            	if(flagCarga == 0 && flagAlta != 1){
+            		controller_loadFromText("data.csv", listaPasajeros);
             	}
             	controller_addPassenger(listaPasajeros);
             	flagAlta = 1;

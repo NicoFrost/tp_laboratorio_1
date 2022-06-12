@@ -49,12 +49,13 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
 int controller_addPassenger(LinkedList* pArrayListPassenger)
 {
 	Passenger* nuevoPasajero = Passenger_new();
-	int lastId;
+	int lastId,retorno = 0;
 	if(setPaxData(nuevoPasajero)){
 		Passenger_getLastId(pArrayListPassenger, &lastId);
 		Passenger_add(pArrayListPassenger,nuevoPasajero,lastId);
+		retorno = 1;
 	}
-    return 1;
+    return retorno;
 }
 
 /** \brief Modificar datos de pasajero

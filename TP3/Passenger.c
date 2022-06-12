@@ -255,7 +255,6 @@ int GuardarTxt(FILE* pFile,LinkedList* lList){
 		char estadoVuelo[TAM];
 		int len,cantidadEscrita;
 		len = ll_len(lList);
-		printf("len: %d \n",len);
 
 		if(len > 0){
 			fprintf(pFile,"id,name,lastname,price,flycode,typePassenger,statusFlight\n");

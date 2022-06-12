@@ -32,7 +32,7 @@ int main()
     int option2 = 0;
     int flagCarga = 0;
     int flagAlta = 0;
-
+	int flagGuardar = 0;
     setbuf(stdout,NULL);
     LinkedList* listaPasajeros = ll_newLinkedList();
 
@@ -49,12 +49,14 @@ int main()
 									controller_loadFromText("data.csv", listaPasajeros);
 									flagCarga = 1;
 									flagAlta = 1;
+									flagGuardar = 0;
 									break;
 								case 2:
 
 									controller_loadFromBinary("data.bin", listaPasajeros);
 									flagCarga = 1;
 									flagAlta = 1;
+									flagGuardar = 0;
 									break;
 							}
 						}while(option2 != 0);
@@ -67,8 +69,9 @@ int main()
             		controller_loadFromText("data.csv", listaPasajeros);
             		flagCarga = 1;
             	}
-            	controller_addPassenger(listaPasajeros);
-            	flagAlta = 1;
+            	if(controller_addPassenger(listaPasajeros)){
+            		flagAlta = 1;
+            	}
             	break;
             case 3:
             	if(flagAlta == 1){
@@ -104,12 +107,14 @@ int main()
 
 								if(controller_saveAsText("data.csv",listaPasajeros)){
 									flagCarga = 0;
+									flagGuardar = 1;
 								}
 								break;
 							case 2:
 
 								if(controller_saveAsBinary("data.bin", listaPasajeros)){
 									flagCarga = 0;
+									flagGuardar = 1;
 								}
 								break;
 						}
@@ -119,7 +124,7 @@ int main()
             	}
             	break;
             case 8:
-            	if(flagCarga != 0){
+            	if(flagGuardar != 1){
             		option = 10;
             	}
             	break;

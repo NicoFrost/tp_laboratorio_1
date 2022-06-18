@@ -1,4 +1,0 @@
-id,name,lastname,price,flycode,typePassenger,statusFlight
-1,Lou,González,10000.00,BA2491A,FirstClass,Aterrizado
-2,Ulrike,Muñoz,25000.00,IB0800A,FirstClass,Aterrizado
-3,Brade,Rojas,20000.00,MM0987B,FirstClass,En Horario
